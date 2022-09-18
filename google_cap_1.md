@@ -78,29 +78,7 @@ trip data.
 
 ``` r
 library(tidyverse)
-```
-
-    ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-    ## ✔ ggplot2 3.3.6      ✔ purrr   0.3.4 
-    ## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
-    ## ✔ tidyr   1.2.1      ✔ stringr 1.4.1 
-    ## ✔ readr   2.1.2      ✔ forcats 0.5.2 
-    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-    ## ✖ dplyr::filter() masks stats::filter()
-    ## ✖ dplyr::lag()    masks stats::lag()
-
-``` r
 library(lubridate)
-```
-
-    ## 
-    ## Attaching package: 'lubridate'
-    ## 
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     date, intersect, setdiff, union
-
-``` r
 library(geosphere)
 library(outliers)
 ```
@@ -108,127 +86,6 @@ library(outliers)
 ``` r
 data_files <- list.files(pattern = "*.csv")
 df_list <- lapply(data_files, read_csv)
-```
-
-    ## Rows: 804352 Columns: 13
-    ## ── Column specification ────────────────────────────────────────────────────────
-    ## Delimiter: ","
-    ## chr  (7): ride_id, rideable_type, start_station_name, start_station_id, end_...
-    ## dbl  (4): start_lat, start_lng, end_lat, end_lng
-    ## dttm (2): started_at, ended_at
-    ## 
-    ## ℹ Use `spec()` to retrieve the full column specification for this data.
-    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-    ## Rows: 756147 Columns: 13
-    ## ── Column specification ────────────────────────────────────────────────────────
-    ## Delimiter: ","
-    ## chr  (7): ride_id, rideable_type, start_station_name, start_station_id, end_...
-    ## dbl  (4): start_lat, start_lng, end_lat, end_lng
-    ## dttm (2): started_at, ended_at
-    ## 
-    ## ℹ Use `spec()` to retrieve the full column specification for this data.
-    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-    ## Rows: 631226 Columns: 13
-    ## ── Column specification ────────────────────────────────────────────────────────
-    ## Delimiter: ","
-    ## chr  (7): ride_id, rideable_type, start_station_name, start_station_id, end_...
-    ## dbl  (4): start_lat, start_lng, end_lat, end_lng
-    ## dttm (2): started_at, ended_at
-    ## 
-    ## ℹ Use `spec()` to retrieve the full column specification for this data.
-    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-    ## Rows: 359978 Columns: 13
-    ## ── Column specification ────────────────────────────────────────────────────────
-    ## Delimiter: ","
-    ## chr  (7): ride_id, rideable_type, start_station_name, start_station_id, end_...
-    ## dbl  (4): start_lat, start_lng, end_lat, end_lng
-    ## dttm (2): started_at, ended_at
-    ## 
-    ## ℹ Use `spec()` to retrieve the full column specification for this data.
-    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-    ## Rows: 247540 Columns: 13
-    ## ── Column specification ────────────────────────────────────────────────────────
-    ## Delimiter: ","
-    ## chr  (7): ride_id, rideable_type, start_station_name, start_station_id, end_...
-    ## dbl  (4): start_lat, start_lng, end_lat, end_lng
-    ## dttm (2): started_at, ended_at
-    ## 
-    ## ℹ Use `spec()` to retrieve the full column specification for this data.
-    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-    ## Rows: 103770 Columns: 13
-    ## ── Column specification ────────────────────────────────────────────────────────
-    ## Delimiter: ","
-    ## chr  (7): ride_id, rideable_type, start_station_name, start_station_id, end_...
-    ## dbl  (4): start_lat, start_lng, end_lat, end_lng
-    ## dttm (2): started_at, ended_at
-    ## 
-    ## ℹ Use `spec()` to retrieve the full column specification for this data.
-    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-    ## Rows: 115609 Columns: 13
-    ## ── Column specification ────────────────────────────────────────────────────────
-    ## Delimiter: ","
-    ## chr  (7): ride_id, rideable_type, start_station_name, start_station_id, end_...
-    ## dbl  (4): start_lat, start_lng, end_lat, end_lng
-    ## dttm (2): started_at, ended_at
-    ## 
-    ## ℹ Use `spec()` to retrieve the full column specification for this data.
-    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-    ## Rows: 284042 Columns: 13
-    ## ── Column specification ────────────────────────────────────────────────────────
-    ## Delimiter: ","
-    ## chr  (7): ride_id, rideable_type, start_station_name, start_station_id, end_...
-    ## dbl  (4): start_lat, start_lng, end_lat, end_lng
-    ## dttm (2): started_at, ended_at
-    ## 
-    ## ℹ Use `spec()` to retrieve the full column specification for this data.
-    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-    ## Rows: 371249 Columns: 13
-    ## ── Column specification ────────────────────────────────────────────────────────
-    ## Delimiter: ","
-    ## chr  (7): ride_id, rideable_type, start_station_name, start_station_id, end_...
-    ## dbl  (4): start_lat, start_lng, end_lat, end_lng
-    ## dttm (2): started_at, ended_at
-    ## 
-    ## ℹ Use `spec()` to retrieve the full column specification for this data.
-    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-    ## Rows: 634858 Columns: 13
-    ## ── Column specification ────────────────────────────────────────────────────────
-    ## Delimiter: ","
-    ## chr  (7): ride_id, rideable_type, start_station_name, start_station_id, end_...
-    ## dbl  (4): start_lat, start_lng, end_lat, end_lng
-    ## dttm (2): started_at, ended_at
-    ## 
-    ## ℹ Use `spec()` to retrieve the full column specification for this data.
-    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-    ## Rows: 769204 Columns: 13
-    ## ── Column specification ────────────────────────────────────────────────────────
-    ## Delimiter: ","
-    ## chr  (7): ride_id, rideable_type, start_station_name, start_station_id, end_...
-    ## dbl  (4): start_lat, start_lng, end_lat, end_lng
-    ## dttm (2): started_at, ended_at
-    ## 
-    ## ℹ Use `spec()` to retrieve the full column specification for this data.
-    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-    ## Rows: 823488 Columns: 13
-    ## ── Column specification ────────────────────────────────────────────────────────
-    ## Delimiter: ","
-    ## chr  (7): ride_id, rideable_type, start_station_name, start_station_id, end_...
-    ## dbl  (4): start_lat, start_lng, end_lat, end_lng
-    ## dttm (2): started_at, ended_at
-    ## 
-    ## ℹ Use `spec()` to retrieve the full column specification for this data.
-    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-    ## Rows: 785932 Columns: 13
-    ## ── Column specification ────────────────────────────────────────────────────────
-    ## Delimiter: ","
-    ## chr  (7): ride_id, rideable_type, start_station_name, start_station_id, end_...
-    ## dbl  (4): start_lat, start_lng, end_lat, end_lng
-    ## dttm (2): started_at, ended_at
-    ## 
-    ## ℹ Use `spec()` to retrieve the full column specification for this data.
-    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-
-``` r
 cyclistic_df <- bind_rows(df_list)
 ```
 
@@ -515,7 +372,7 @@ str(cyclistic_df_new)
 
 I noticed that the minimum ride length is below 0 (-7745) and the
 minimum ride distance is 0. Both values are impossible / does not make
-sense and we’ll be dropping those rows.Stated in the guide script
+sense and we’ll be dropping those rows. Stated in the guide script
 provided to us is that, “*the data frame includes a few hundred entries
 when bikes were taken out of docks and checked for quality by Divvy*”,
 which could explain why some values were as such (below 0).
@@ -541,47 +398,47 @@ summary(sampled_cyclistic)
 ```
 
     ##    ride_id          rideable_type        started_at                    
-    ##  Length:666         Length:666         Min.   :2021-08-02 01:19:04.00  
-    ##  Class :character   Class :character   1st Qu.:2021-10-07 13:28:57.75  
-    ##  Mode  :character   Mode  :character   Median :2022-04-04 15:26:15.00  
-    ##                                        Mean   :2022-02-26 05:21:26.95  
-    ##                                        3rd Qu.:2022-06-26 19:14:38.00  
-    ##                                        Max.   :2022-08-31 21:02:29.00  
+    ##  Length:666         Length:666         Min.   :2021-08-01 15:55:49.00  
+    ##  Class :character   Class :character   1st Qu.:2021-09-25 13:55:33.75  
+    ##  Mode  :character   Mode  :character   Median :2022-03-20 17:46:20.00  
+    ##                                        Mean   :2022-02-17 03:41:20.71  
+    ##                                        3rd Qu.:2022-06-29 09:10:20.75  
+    ##                                        Max.   :2022-08-31 22:43:02.00  
     ##     ended_at                      start_station_name start_station_id  
-    ##  Min.   :2021-08-02 01:29:38.00   Length:666         Length:666        
-    ##  1st Qu.:2021-10-07 13:35:30.50   Class :character   Class :character  
-    ##  Median :2022-04-04 15:38:02.00   Mode  :character   Mode  :character  
-    ##  Mean   :2022-02-26 05:38:25.75                                        
-    ##  3rd Qu.:2022-06-26 19:37:05.75                                        
-    ##  Max.   :2022-08-31 21:23:56.00                                        
+    ##  Min.   :2021-08-01 16:00:41.00   Length:666         Length:666        
+    ##  1st Qu.:2021-09-25 14:04:53.75   Class :character   Class :character  
+    ##  Median :2022-03-20 17:57:32.00   Mode  :character   Mode  :character  
+    ##  Mean   :2022-02-17 03:58:43.50                                        
+    ##  3rd Qu.:2022-06-29 09:21:14.25                                        
+    ##  Max.   :2022-08-31 22:45:56.00                                        
     ##  end_station_name   end_station_id       start_lat       start_lng     
-    ##  Length:666         Length:666         Min.   :41.74   Min.   :-87.76  
+    ##  Length:666         Length:666         Min.   :41.75   Min.   :-87.81  
     ##  Class :character   Class :character   1st Qu.:41.88   1st Qu.:-87.66  
     ##  Mode  :character   Mode  :character   Median :41.90   Median :-87.64  
     ##                                        Mean   :41.90   Mean   :-87.64  
     ##                                        3rd Qu.:41.93   3rd Qu.:-87.63  
-    ##                                        Max.   :42.03   Max.   :-87.58  
+    ##                                        Max.   :42.06   Max.   :-87.56  
     ##     end_lat         end_lng       member_casual      ride_length_seconds
-    ##  Min.   :41.74   Min.   :-87.79   Length:666         Min.   :   18.0    
-    ##  1st Qu.:41.88   1st Qu.:-87.66   Class :character   1st Qu.:  384.5    
-    ##  Median :41.90   Median :-87.64   Mode  :character   Median :  646.0    
-    ##  Mean   :41.90   Mean   :-87.64                      Mean   : 1018.8    
-    ##  3rd Qu.:41.93   3rd Qu.:-87.63                      3rd Qu.: 1103.2    
-    ##  Max.   :42.05   Max.   :-87.58                      Max.   :12094.0    
+    ##  Min.   :41.75   Min.   :-87.77   Length:666         Min.   :   13.0    
+    ##  1st Qu.:41.88   1st Qu.:-87.66   Class :character   1st Qu.:  406.5    
+    ##  Median :41.90   Median :-87.64   Mode  :character   Median :  686.5    
+    ##  Mean   :41.90   Mean   :-87.64                      Mean   : 1042.8    
+    ##  3rd Qu.:41.93   3rd Qu.:-87.63                      3rd Qu.: 1229.8    
+    ##  Max.   :42.06   Max.   :-87.57                      Max.   :18650.0    
     ##  ride_length_mins day_of_week         start_time          end_time        
-    ##  Min.   :  0.30   Length:666         Length:666         Length:666        
-    ##  1st Qu.:  6.40   Class :character   Class :character   Class :character  
-    ##  Median : 10.80   Mode  :character   Mode  :character   Mode  :character  
-    ##  Mean   : 16.98                                                           
-    ##  3rd Qu.: 18.40                                                           
-    ##  Max.   :201.60                                                           
+    ##  Min.   :  0.20   Length:666         Length:666         Length:666        
+    ##  1st Qu.:  6.80   Class :character   Class :character   Class :character  
+    ##  Median : 11.40   Mode  :character   Mode  :character   Mode  :character  
+    ##  Mean   : 17.38                                                           
+    ##  3rd Qu.: 20.48                                                           
+    ##  Max.   :310.80                                                           
     ##  ride_distance      
-    ##  Min.   : 0.003451  
-    ##  1st Qu.: 1.012941  
-    ##  Median : 1.701818  
-    ##  Mean   : 2.153717  
-    ##  3rd Qu.: 2.798180  
-    ##  Max.   :13.034542
+    ##  Min.   : 0.000416  
+    ##  1st Qu.: 1.012843  
+    ##  Median : 1.749463  
+    ##  Mean   : 2.269546  
+    ##  3rd Qu.: 2.832399  
+    ##  Max.   :10.869879
 
 ------------------------------------------------------------------------
 
@@ -636,12 +493,7 @@ daily_rides_member <- sampled_cyclistic %>%
   mutate(day_of_week = wday(started_at, label = TRUE)) %>%
   group_by(member_casual, day_of_week) %>%
   summarise(daily_count = n())
-```
 
-    ## `summarise()` has grouped output by 'member_casual'. You can override using the
-    ## `.groups` argument.
-
-``` r
 daily_rides_member_viz <- ggplot(daily_rides_member, aes(x=day_of_week, y=daily_count, fill=member_casual)) +
   geom_col(position = "dodge") +
   labs(title="Ride count in a week, by rider type", x="Days", y="Ride count")
@@ -677,39 +529,25 @@ total_bike_usage <- sampled_cyclistic %>%
   filter(rideable_type != "docked_bike") %>%
   group_by(member_casual, rideable_type) %>%
   summarise(sum_bike_usage = n())
-```
 
-    ## `summarise()` has grouped output by 'member_casual'. You can override using the
-    ## `.groups` argument.
-
-``` r
 total_bike_usage_viz <- ggplot(total_bike_usage, aes(x=member_casual, y=sum_bike_usage, fill=rideable_type)) +
   geom_col(position = "dodge") +
   scale_y_discrete(limits = c(0, 50, 100, 150, 200, 250)) +
   labs(title="Bike usage between members", x="Rider type", y="Usage Count")
-```
 
-    ## Warning: Continuous limits supplied to discrete scale.
-    ## Did you mean `limits = factor(...)` or `scale_*_continuous()`?
-
-``` r
 total_bike_usage_viz
 ```
 
 ![](google_cap_1_files/figure-gfm/unnamed-chunk-18-1.png)<!-- --> \*\*\*
-\### Average ride time between bikes (grouped by members)
+
+### Average ride time between bikes (grouped by members)
 
 ``` r
 avg_bike_duration <- sampled_cyclistic %>%
   filter(rideable_type != "docked_bike") %>%
   group_by(member_casual, rideable_type) %>%
   summarise(avg_bike_usage = mean(ride_length_seconds))
-```
 
-    ## `summarise()` has grouped output by 'member_casual'. You can override using the
-    ## `.groups` argument.
-
-``` r
 avg_bike_usage_viz <- ggplot(avg_bike_duration, aes(x=member_casual, y=avg_bike_usage, fill=rideable_type)) +
   geom_col(position = "dodge") +
   labs(title="Average ride duration by bikes", x="Rider type", y="Ride time (secs)")
@@ -727,12 +565,7 @@ bike_usage_thru_week <- sampled_cyclistic %>%
   filter(rideable_type != "docked_bike") %>%
   group_by(member_casual, rideable_type, day_of_week) %>%
   summarise(daily_total = n())
-```
 
-    ## `summarise()` has grouped output by 'member_casual', 'rideable_type'. You can
-    ## override using the `.groups` argument.
-
-``` r
 avg_bike_usage_week_viz <- ggplot(bike_usage_thru_week, aes(x=day_of_week, y=daily_total, fill=rideable_type)) +
   geom_col(position = "dodge") +
   facet_grid(~member_casual) +
@@ -805,43 +638,41 @@ ride_length_spread <- ggplot(sampled_cyclistic, aes(x=ride_length_seconds)) +
 ride_length_spread
 ```
 
-    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-
 ![](google_cap_1_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
 
 ``` r
-# mean (ride length in seconds) = 972.1381 secs
+# mean (ride length in seconds)
 mean(sampled_cyclistic$ride_length_seconds)
 ```
 
-    ## [1] 1018.803
+    ## [1] 1042.799
 
 ``` r
-# mean (ride distance in km) = 2.133668 km
+# mean (ride distance in km)
 mean(sampled_cyclistic$ride_distance)
 ```
 
-    ## [1] 2.153717
+    ## [1] 2.269546
 
 ``` r
-# median (ride length in seconds) = 649 secs
+# median (ride length in seconds)
 median(sampled_cyclistic$ride_length_seconds)
 ```
 
-    ## [1] 646
+    ## [1] 686.5
 
 ``` r
-# median (ride distance in km) = 1.666904 km
+# median (ride distance in km)
 median(sampled_cyclistic$ride_distance)
 ```
 
-    ## [1] 1.701818
+    ## [1] 1.749463
 
 ``` r
-outlier(sampled_cyclistic$ride_length_seconds) # 24226 seconds
+outlier(sampled_cyclistic$ride_length_seconds)
 ```
 
-    ## [1] 12094
+    ## [1] 18650
 
 ------------------------------------------------------------------------
 
@@ -859,16 +690,16 @@ ride_length_spread <- ggplot(sampled_cyclistic, aes(x=log(ride_length_seconds)))
 ride_length_spread
 ```
 
-    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-
 ![](google_cap_1_files/figure-gfm/unnamed-chunk-23-1.png)<!-- --> \*\*\*
 
 … and the distribution looks better than the previous one. However, I
-did not know how to move on after this step because I was not sure what
-to do with this step. I intended to to a one-sample-t-test to check if
-the sample mean was representative of the population but I got stuck
-here (was I actually supposed to use this distribution for the
-one-sample-t-test?)
+was not sure what to do with this step. I intended to to a
+one-sample-t-test to check if the sample mean was representative of the
+population but I got stuck here (was I actually supposed to use this
+distribution for the one-sample-t-test?)
+
+-   I will update this case study with a dashboard with Tableau,
+    featuring a viz of popular routes by rider types!
 
 -   I will definitely be adding on to this case study every now and then
     as I learn more about statistics!
